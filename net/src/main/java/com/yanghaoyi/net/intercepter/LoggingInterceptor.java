@@ -2,6 +2,8 @@ package com.yanghaoyi.net.intercepter;
 
 import android.util.Log;
 
+import com.yanghaoyi.net.util.LogJsonConvertUtil;
+
 import java.io.IOException;
 
 import okhttp3.FormBody;
@@ -45,7 +47,7 @@ public class LoggingInterceptor implements Interceptor {
                 Log.w(TAG, "| RequestParams:{"+sb.toString()+"}");
             }
         }
-        Log.w(TAG, "| Response:" + content);
+        LogJsonConvertUtil.printJson("MyRetrofit",content,"Response");
         Log.w(TAG," ----------End:"+duration+"毫秒----------");
         return response.newBuilder()
                 .body(ResponseBody.create(mediaType, content))
